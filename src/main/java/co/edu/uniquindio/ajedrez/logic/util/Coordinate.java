@@ -1,6 +1,6 @@
 package co.edu.uniquindio.ajedrez.logic.util;
 
-public class Coordinate {
+public class Coordinate implements Comparable<Coordinate> {
 
     private int row = 0;
     private int col = 0;
@@ -59,5 +59,13 @@ public class Coordinate {
         char[] cols = "abcdefgh".toCharArray();
 
         return "" + cols[col] + rows[row];
+    }
+
+    @Override
+    public int compareTo(Coordinate coordinate) {
+        if (this.getRow() == coordinate.getRow() && this.getCol() == coordinate.getCol()) {
+            return 0;
+        }
+        return -1;
     }
 }

@@ -18,7 +18,55 @@ public class Alfil extends Pieza implements IMover{
     public void mover(Casilla coordinate) {
         // Tomamos de la ficha actual la casilla y el tablero de la casilla, esto nos permitira validar si la ficha
         // puede moverse, comer, reclamar o hacer enroque.
-        Tablero tablero = this.getCasilla().getTablero();
+        Coordinate piezaCoor = this.getCasilla().getCoordinate();
+        int row = coordinate.getCoordinate().getRow();
+        int col = coordinate.getCoordinate().getCol();
+        boolean posible1 = false;
+
+        if(this.getCasilla().getTablero().getCasilla(row, col).getPieza().getColor() != this.getColor()) {
+            for(Coordinate i: movidas(this)) {
+                if(i.getRow() == row && i.getCol() == col) {
+                    posible1 = true;
+                }
+            }
+        }
+
+        if(posible1) {
+
+            int i, j;
+            for(i=row-1, j=col-1; i>piezaCoor.getRow() && j>piezaCoor.getCol(); i--, j--) {
+                if(this.getCasilla().getTablero().getCasilla(i, j) != null) {
+                    posible1 = false;
+                    break;
+                }
+            }
+            for(i=row-1, j=col-1; i<piezaCoor.getRow() && j<piezaCoor.getCol(); i++, j++) {
+                if(this.getCasilla().getTablero().getCasilla(i, j) != null) {
+                    posible1 = false;
+                    break;
+                }
+            }
+            for(i=row-1, j=col-1; i<piezaCoor.getRow() && j>piezaCoor.getCol(); i++, j--) {
+                if(this.getCasilla().getTablero().getCasilla(i, j) != null) {
+                    posible1 = false;
+                    break;
+                }
+            }
+            for(i=row-1, j=col-1; i>piezaCoor.getRow() && j<piezaCoor.getCol(); i--, j++) {
+                if(this.getCasilla().getTablero().getCasilla(i, j) != null) {
+                    posible1 = false;
+                    break;
+                }
+            }
+        }
+        if(posible1) {
+            if(this.getCasilla().getTablero().getCasilla(row, col).getPieza() != null) {
+                this.getCasilla().getTablero().getCasilla(row, col).getPieza().setCasilla(null);
+            }
+            this.getCasilla().getTablero().getCasilla(row, col).setPieza(this);
+            this.getCasilla().setPieza(null);
+            this.setCasilla(this.getCasilla().getTablero().getCasilla(row, col));
+        }
     }
 
     public ArrayList<Coordinate> movidas(Pieza pieza) {
@@ -41,6 +89,10 @@ public class Alfil extends Pieza implements IMover{
             }
         }
         return coordinates;
+    }
+
+    public ArrayList<Coordinate> filtradas(Pieza pieza, Tablero tablero){
+        return movidas(this);
     }
 
     public String toString() {

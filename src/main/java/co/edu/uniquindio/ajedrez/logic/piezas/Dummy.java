@@ -1,6 +1,7 @@
 package co.edu.uniquindio.ajedrez.logic.piezas;
 
 import co.edu.uniquindio.ajedrez.logic.Casilla;
+import co.edu.uniquindio.ajedrez.logic.Tablero;
 import co.edu.uniquindio.ajedrez.logic.util.Coordinate;
 
 import java.util.ArrayList;
@@ -33,6 +34,10 @@ public class Dummy extends Pieza implements IMover{
 
         }
         return coordinates;
+    }
+
+    public ArrayList<Coordinate> filtradas(Pieza pieza, Tablero tablero){
+        return new ArrayList<>();
     }
 
     public String toString() {

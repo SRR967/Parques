@@ -1,6 +1,7 @@
 package co.edu.uniquindio.ajedrez.logic.piezas;
 
 import co.edu.uniquindio.ajedrez.logic.Casilla;
+import co.edu.uniquindio.ajedrez.logic.Tablero;
 import co.edu.uniquindio.ajedrez.logic.util.Coordinate;
 
 import java.util.ArrayList;
@@ -14,8 +15,18 @@ public class Reina extends Pieza implements IMover{
     }
 
     @Override
-    public void mover(Casilla coordinate) {
+    public void mover(Casilla destino) {
+        Tablero tablero = destino.getTablero();
+        ArrayList<Coordinate> coordinates = movidas(destino.getPieza());
 
+        for (Coordinate cordenada : coordinates) {
+            if(tablero.getCasilla(cordenada.getRow(), cordenada.getCol()).toString() == "\u2591" ||
+                    tablero.getCasilla(cordenada.getRow(), cordenada.getCol()).toString() == "\u2593"){
+                System.out.println("Puede mover a: "+ cordenada);
+            }else if(tablero.getCasilla(cordenada.getRow(), cordenada.getCol()).getPieza().getColor().equals(getColor())){
+                System.out.println("Puede comer en: "+cordenada);
+            }
+        }
     }
 
     public ArrayList<Coordinate> movidas(Pieza pieza) {
@@ -93,6 +104,10 @@ public class Reina extends Pieza implements IMover{
             coordinate.setRow(vertical-i);
             coordinates.add(new Coordinate(coordinate.getRow(), coordinate.getCol()));
         }
+    }
+
+    public ArrayList<Coordinate> filtradas(Pieza pieza, Tablero tablero){
+        return movidas(this);
     }
 
     public String toString() {

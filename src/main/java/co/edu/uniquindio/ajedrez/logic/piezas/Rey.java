@@ -1,6 +1,7 @@
 package co.edu.uniquindio.ajedrez.logic.piezas;
 
 import co.edu.uniquindio.ajedrez.logic.Casilla;
+import co.edu.uniquindio.ajedrez.logic.Tablero;
 import co.edu.uniquindio.ajedrez.logic.util.Coordinate;
 
 import java.util.ArrayList;
@@ -89,6 +90,10 @@ public class Rey extends Pieza implements IMover{
             coordinate.setRow(vertical-i);
             coordinates.add(new Coordinate(coordinate.getRow(), coordinate.getCol()));
         }
+    }
+
+    public ArrayList<Coordinate> filtradas(Pieza pieza, Tablero tablero){
+        return movidas(this);
     }
 
     public String toString() {
