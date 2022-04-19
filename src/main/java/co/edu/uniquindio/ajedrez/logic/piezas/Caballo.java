@@ -169,7 +169,6 @@ public class Caballo extends Pieza implements IMover{
 
                 if (rowPos >= 0 && rowPos <= 7 && colPos >= 0 && colPos <= 7) {
                     coordinates.add(new Coordinate(rowPos, colPos));
-                    // System.out.println("radians:" + radians + "row: " + rowPos + " col: " + colPos);
                 }
             }
         }

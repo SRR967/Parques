@@ -57,12 +57,12 @@ public class Tablero {
                 }
 
                 // Definimos reinas.
-                if ((row == 0 || row == 7) && (columm == 3)) {
+                if ((row == 0 || row == 7) && (columm == 4)) {
                     casilla.setPieza(new Reina(color));
                 }
 
                 // Definimos reyes.
-                if ((row == 0 || row == 7) && (columm == 4)) {
+                if ((row == 0 || row == 7) && (columm == 3)) {
                     casilla.setPieza(new Rey(color));
                 }
 
