@@ -12,7 +12,7 @@ public class MainApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/co/edu/uniquindio/ajedrez/view/board-view.fxml"));
         try {
-            Scene scene = new Scene(fxmlLoader.load(), 500, 500);
+            Scene scene = new Scene(fxmlLoader.load(), 500, 500); //Help
             stage.setTitle("Ajedrez!");
             stage.setScene(scene);
             stage.show();
